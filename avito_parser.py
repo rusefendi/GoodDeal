@@ -38,7 +38,7 @@ def write_csv(data):
                         data['metro'], data['url']))
 
 
-# parsing page with results
+# parsing result page
 def get_page_data(html, resent_ad):
     soup = BeautifulSoup(html, 'lxml')
 
@@ -73,7 +73,7 @@ def get_page_data(html, resent_ad):
             return True
 
         if ad == ads[0]:
-            # writing in csv file most recent ad
+            # writing in csv file most recent ad to prevent duplicates after script reload
             write_csv(data)
 
         post(data)
@@ -81,7 +81,7 @@ def get_page_data(html, resent_ad):
 
 
 def main():
-    # url i decided to use
+    # url which i decided to use
     # you can use any other
 
     url = 'https://www.avito.ru/moskva/igry_pristavki_i_programmy/igrovye_pristavki?p=1&pmax=13000&pmin=8000&user=1&bt=1&q=sony+playstation+4&i=1&s=104'
@@ -110,7 +110,7 @@ def main():
                 break
 
         # sleeping for 1 hour
-        sleep(60 * 60 * 3)
+        sleep(60 * 60 * 1)
 
 
 if __name__ == '__main__':
