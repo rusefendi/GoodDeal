@@ -16,7 +16,7 @@ def get_total_pages(html):
     try:
         pages = soup.find('div', class_='pagination-pages').find_all('a', class_='pagination-page')[-1].get('href')
         total_pages = re.search('[0-9]+', pages).group(0)
-    except:
+    except AttributeError:
         total_pages = 1
 
     return int(total_pages)
@@ -48,22 +48,22 @@ def get_page_data(html, resent_ad):
         # title, price, url
         try:
             title = ad.find('h3').text.strip()
-        except:
+        except AttributeError:
             title = ''
 
         try:
             url = ad.find('a').get('href')
-        except:
+        except AttributeError:
             url = ''
 
         try:
             price = ad.find('div', class_='about').text.strip()
-        except:
+        except AttributeError:
             price = ''
 
         try:
             metro = ad.find('div', class_='data').find_all('p')[-1].text
-        except:
+        except (AttributeError, IndexError):
             metro = ''
 
         data = {'title': title, 'price': price, 'metro': metro, 'url': 'https://avito.ru' + url}
@@ -95,7 +95,7 @@ def main():
     while True:
         try:
             resent_ad = get_most_resent_ad()
-        except:
+        except FileNotFoundError:
             resent_ad = None
 
         for i in range(1, total_pages + 1):
