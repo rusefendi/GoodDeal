@@ -38,6 +38,7 @@ def write_csv(data):
                         data['metro'], data['url']))
 
 
+# parsing page with results
 def get_page_data(html, resent_ad):
     soup = BeautifulSoup(html, 'lxml')
 
@@ -80,6 +81,9 @@ def get_page_data(html, resent_ad):
 
 
 def main():
+    # url i decided to use
+    # you can use any other
+
     url = 'https://www.avito.ru/moskva/igry_pristavki_i_programmy/igrovye_pristavki?p=1&pmax=13000&pmin=8000&user=1&bt=1&q=sony+playstation+4&i=1&s=104'
     base_url = 'https://www.avito.ru/moskva/igry_pristavki_i_programmy/igrovye_pristavki?'
     page_part = 'p='
