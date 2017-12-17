@@ -81,7 +81,7 @@ def get_page_data(html, resent_ad):
 
 
 def main():
-    # url which i decided to use
+    # url which I decided to use
     # you can use any other
 
     url = 'https://www.avito.ru/moskva/igry_pristavki_i_programmy/igrovye_pristavki?p=1&pmax=13000&pmin=8000&user=1&bt=1&q=sony+playstation+4&i=1&s=104'
@@ -105,11 +105,13 @@ def main():
             # get valid html file
             html = get_html(url_gen)
 
+            print('Total number of pages ' + str(total_pages))
+
             # parsing ads
             if get_page_data(html, resent_ad):
                 break
 
-        # sleeping for 1 hour
+        print('Sleeping for 1 hour')
         sleep(60 * 60 * 1)
 
 
